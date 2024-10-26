@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">User Directory</string>
+    <string name="user_directory">Каталог пользователей</string>
+    <string name="save">Сохранить</string>
+    <string name="exit">Выход</string>
+    <string name="not_all_data_is_entered">Не все данные введены</string>
+    <string name="user">Пользователь</string>
+    <string name="delete">удалён</string>
+    <string name="name">Имя</string>
+    <string name="age">Возраст</string>
+</resources>
