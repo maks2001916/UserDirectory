@@ -5,7 +5,12 @@
     <string name="exit">Выход</string>
     <string name="not_all_data_is_entered">Не все данные введены</string>
     <string name="user">Пользователь</string>
-    <string name="delete">удалён</string>
+    <string name="user_1">Пользователя</string>
+    <string name="deleted">удалён</string>
+    <string name="delete">удалить</string>
     <string name="name">Имя</string>
     <string name="age">Возраст</string>
+    <string name="attention">Внимание</string>
+    <string name="yes">Да</string>
+    <string name="cancellation">Отмена</string>
 </resources>
