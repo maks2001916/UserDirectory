@@ -61,7 +61,8 @@ class MainActivity : AppCompatActivity(), Removable {
                 val dialog = MyDialog()
                 val args = Bundle()
                 args.putString("name", user?.name)
-                args.putString("age", user?.age.toString())
+                dialog.arguments = args
+                dialog.show(supportFragmentManager, "custom")
             }
 
     }
@@ -79,6 +80,10 @@ class MainActivity : AppCompatActivity(), Removable {
     }
 
     override fun remove(name: String?) {
-        adapter?.remove(name)
+        val userToRemove = users.find { it.name == name }
+        if (userToRemove != null) {
+            users.remove(userToRemove)
+            adapter?.notifyDataSetChanged()
+        }
     }
 }

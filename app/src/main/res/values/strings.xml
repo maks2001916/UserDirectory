@@ -4,8 +4,8 @@
     <string name="save">Сохранить</string>
     <string name="exit">Выход</string>
     <string name="not_all_data_is_entered">Не все данные введены</string>
-    <string name="user">Пользователь</string>
-    <string name="user_1">Пользователя</string>
+    <string name="user">пользователь</string>
+    <string name="user_1">пользователя</string>
     <string name="deleted">удалён</string>
     <string name="delete">удалить</string>
     <string name="name">Имя</string>
