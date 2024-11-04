@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), Removable {
 
 
         setSupportActionBar(toolbarTB)
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userViewModel?.users)
+        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userViewModel.users)
         directoryLV.adapter = adapter
 
         userViewModel.currentUser.observe(this, {

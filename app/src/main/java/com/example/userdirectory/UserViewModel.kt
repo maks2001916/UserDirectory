@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 
 class UserViewModel: ViewModel() {
 
-    var users: MutableList<User>? = null
+    var users: MutableLiveData<User>? = null
     val currentUser: MutableLiveData<User> by lazy { MutableLiveData<User>() }
 
 }
