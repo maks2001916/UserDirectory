@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity(), Removable {
 
-    val users: MutableList<User> = mutableListOf()
+    //val users: MutableList<User> = mutableListOf()
     private var adapter: ArrayAdapter<User>? = null
     lateinit var userViewModel: UserViewModel
 
@@ -41,11 +41,11 @@ class MainActivity : AppCompatActivity(), Removable {
 
 
         setSupportActionBar(toolbarTB)
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
+        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userViewModel?.users)
         directoryLV.adapter = adapter
 
         userViewModel.currentUser.observe(this, {
-            users.add(it)
+            userViewModel.users?.add(it)
             adapter!!.notifyDataSetChanged()
         })
 
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), Removable {
                 ).show()
             } else {
                 if (ageET.text.toString().all {it.isDigit()}) {
-                    users.add(User(nameET.text.toString(), ageET.text.toString().toInt()))
+                    userViewModel.users?.add(User(nameET.text.toString(), ageET.text.toString().toInt()))
                     adapter!!.notifyDataSetChanged()
                     nameET.text.clear()
                     ageET.text.clear()
@@ -98,9 +98,9 @@ class MainActivity : AppCompatActivity(), Removable {
     }
 
     override fun remove(name: String?) {
-        val userToRemove = users.find { it.name == name }
+        val userToRemove = userViewModel.users?.find { it.name == name }
         if (userToRemove != null) {
-            users.remove(userToRemove)
+            userViewModel.users?.remove(userToRemove)
             adapter?.notifyDataSetChanged()
         }
     }
