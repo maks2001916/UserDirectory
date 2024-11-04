@@ -11,8 +11,7 @@
         android:id="@+id/mainToolbarTB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:layout_marginTop="10dp"
         android:textAlignment="center"
         tools:ignore="MissingConstraints"
         app:title="@string/user_directory"/>
@@ -28,8 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"/>
+        android:layout_margin="10dp"/>
 
     <EditText
         android:id="@+id/ageET"
@@ -41,6 +39,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
         app:layout_constraintVertical_bias="0"/>
 
     <Button
@@ -52,13 +51,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
         app:layout_constraintVertical_bias="0"/>
 
     <ListView
         android:id="@+id/directoryLV"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingTop="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintVertical_bias="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

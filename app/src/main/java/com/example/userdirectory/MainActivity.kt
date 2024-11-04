@@ -12,11 +12,13 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity(), Removable {
 
     val users: MutableList<User> = mutableListOf()
     private var adapter: ArrayAdapter<User>? = null
+    lateinit var userViewModel: UserViewModel
 
     private lateinit var toolbarTB: Toolbar
     private lateinit var nameET: EditText
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity(), Removable {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         toolbarTB = findViewById(R.id.mainToolbarTB)
         nameET = findViewById(R.id.nameET)
@@ -36,9 +39,16 @@ class MainActivity : AppCompatActivity(), Removable {
         saveBTN = findViewById(R.id.saveBTN)
         directoryLV = findViewById(R.id.directoryLV)
 
+
         setSupportActionBar(toolbarTB)
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
         directoryLV.adapter = adapter
+
+        userViewModel.currentUser.observe(this, {
+            users.add(it)
+            adapter!!.notifyDataSetChanged()
+        })
+
         saveBTN.setOnClickListener {
             if (nameET.text.toString().isEmpty() ||
                 ageET.text.toString().isEmpty()) {
@@ -48,10 +58,18 @@ class MainActivity : AppCompatActivity(), Removable {
                     Toast.LENGTH_LONG
                 ).show()
             } else {
-                users.add(User(nameET.text.toString(), ageET.text.toString().toInt()))
-                adapter!!.notifyDataSetChanged()
-                nameET.text.clear()
-                ageET.text.clear()
+                if (ageET.text.toString().all {it.isDigit()}) {
+                    users.add(User(nameET.text.toString(), ageET.text.toString().toInt()))
+                    adapter!!.notifyDataSetChanged()
+                    nameET.text.clear()
+                    ageET.text.clear()
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        getString(R.string.only_numbers),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
         }
 
