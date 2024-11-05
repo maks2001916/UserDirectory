@@ -16,7 +16,6 @@ import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity(), Removable {
 
-    //val users: MutableList<User> = mutableListOf()
     private var adapter: ArrayAdapter<User>? = null
     lateinit var userViewModel: UserViewModel
 
@@ -41,14 +40,14 @@ class MainActivity : AppCompatActivity(), Removable {
 
 
         setSupportActionBar(toolbarTB)
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userViewModel.users.value)
+        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userViewModel.users?.value ?: mutableListOf())
         directoryLV.adapter = adapter
 
-        userViewModel.currentUser.observe(this, {
-
-            userViewModel.addUser(it.)
-            adapter!!.notifyDataSetChanged()
-        })
+        userViewModel.currentUser.observe(this) { updatedList ->
+            adapter?.clear()
+            adapter?.addAll(updatedList)
+            adapter?.notifyDataSetChanged()
+        }
 
         saveBTN.setOnClickListener {
             if (nameET.text.toString().isEmpty() ||
