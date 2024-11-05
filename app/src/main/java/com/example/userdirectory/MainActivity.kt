@@ -41,11 +41,12 @@ class MainActivity : AppCompatActivity(), Removable {
 
 
         setSupportActionBar(toolbarTB)
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userViewModel.users)
+        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userViewModel.users.value)
         directoryLV.adapter = adapter
 
         userViewModel.currentUser.observe(this, {
-            userViewModel.users?.add(it)
+
+            userViewModel.addUser(it.)
             adapter!!.notifyDataSetChanged()
         })
 
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity(), Removable {
                 ).show()
             } else {
                 if (ageET.text.toString().all {it.isDigit()}) {
-                    userViewModel.users?.add(User(nameET.text.toString(), ageET.text.toString().toInt()))
+                    userViewModel.addUser(User(nameET.text.toString(), ageET.text.toString().toInt()))
                     adapter!!.notifyDataSetChanged()
                     nameET.text.clear()
                     ageET.text.clear()
@@ -98,9 +99,9 @@ class MainActivity : AppCompatActivity(), Removable {
     }
 
     override fun remove(name: String?) {
-        val userToRemove = userViewModel.users?.find { it.name == name }
+        val userToRemove = userViewModel.users?.value?.find { it.name == name }
         if (userToRemove != null) {
-            userViewModel.users?.remove(userToRemove)
+            userViewModel.removeUser(userToRemove)
             adapter?.notifyDataSetChanged()
         }
     }
